@@ -22,13 +22,13 @@ yaml_version: 4
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
   author:       "Kembay  Assel"      # Your name
-  title:        "Integrate-and-Fire Neuron."      # Project title
+  title:        "Exponential Integrate-and-Fire Neuron."      # Project title
   language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc.
-  description:  "Implement an IF neuron in silicon."      # Short description of what your project does
+  description:  "Implement an Exponential IF neuron in silicon."      # Short description of what your project does
 
 # Longer description of how the project works. You can use the standard markdown format.
   how_it_works: |
-      Apply an input current injection to the IF neuron using switches.
+      Apply an input current injection to the ExpIF neuron using switches.
       This gets added to a membrane potential. 
       If the membrane potential exceeds the threshold, then it triggers a spike.
     
