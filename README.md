@@ -7,12 +7,6 @@
 The Tiny Tapeout Playground operates by applying an input current injection to the IF neuron using switches. The IF neuron model fires a spike when the input voltage crosses the specified threshold without considering any leakage. 
 If the membrane potential exceeds the threshold, it triggers a spike.
 
-
-## Simulations
-
-
-
-
 # What is Tiny Tapeout?
 
 TinyTapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip.
