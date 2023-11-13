@@ -1,6 +1,6 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-# Integrate-and-Fire Neuron in Silicon.
+# Exponential-Integrate-and-Fire Model in Silicon.
 
 <div align="center">
   <img src="figures/IF_design.png" alt="IF Design" />
