@@ -50,7 +50,7 @@ always @(posedge clk) begin
 
     // EIF model: Exponential decay and spiking logic
     assign spike = (state >= threshold);
-    assign next_state = (spike ? 0 : state + current) - (spike ? threshold : 0); 
+    assign next_state = (spike ? 0 : (state + current)*0.9) - (spike ? threshold : 0); 
     
 
 
