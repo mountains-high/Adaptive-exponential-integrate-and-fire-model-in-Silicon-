@@ -34,7 +34,7 @@ documentation:
     
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
-     An 8-bit input current is applied to the IF neuron through the designated input (i.e., uio_in).
+     An 8-bit input current is applied to the ExpIF neuron through the designated input (i.e., uio_in).
      The membrane potential of the IF neuron will respond to the applied input current. 
      Larger currents will lead to a higher membrane potential. The neuron is designed to generate a spike when the membrane potential exceeds a certain threshold.
 
