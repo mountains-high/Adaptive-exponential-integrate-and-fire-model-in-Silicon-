@@ -1,6 +1,6 @@
 `default_nettype none
 
-module tt_um_if (
+module tt_um_eif (
     input  wire [7:0] ui_in,    // Dedicated inputs - connected to the input switches
     output wire [7:0] uo_out,   // Dedicated outputs - connected to the 7 segment display
     input  wire [7:0] uio_in,   // IOs: Bidirectional Input path
@@ -19,6 +19,6 @@ module tt_um_if (
 
 
     // instantiate lif neuron 
-    if_neuron if_neuron1(.current(ui_in), .clk(clk), .rst_n(rst_n), .spike(uio_out[7]), .state(uo_out));
+    eif_neuron eif_neuron1(.current(ui_in), .clk(clk), .rst_n(rst_n), .spike(uio_out[7]), .state(uo_out));
 
 endmodule
