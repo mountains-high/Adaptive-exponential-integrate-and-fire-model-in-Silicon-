@@ -19,6 +19,6 @@ module tt_um_eif (
 
 
     // instantiate lif neuron 
-    eif_neuron eif_neuron1(.current(ui_in), .clk(clk), .rst_n(rst_n), .spike(uio_out[7]), .state(uo_out), .Delta_T(uio_in[0]), .tau(uio_in[1]),);
+    eif_neuron eif_neuron1(.current(ui_in), .clk(clk), .rst_n(rst_n), .spike(uio_out[7]), .state(uo_out), .Delta_T(uio_in[6]), .tau(uio_in[5]));
 
 endmodule
