@@ -26,7 +26,7 @@ module tt_um_eif (
     .rst_n(rst_n),
     .spike(uio_out[7]),
     .state(uo_out),
-    .threshold(uio_out[0])
+    .threshold(uio_out[5])
 );
 
 endmodule
