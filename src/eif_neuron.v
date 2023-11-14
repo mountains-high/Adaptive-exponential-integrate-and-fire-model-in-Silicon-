@@ -30,7 +30,7 @@ module eif_neuron (
             next_state = u_rest; // Reset the membrane potential to resting potential
             spike = 1;           // Generate spike
         end else begin
-            next_state = state + Delta_T * exp((state - theta_rh) / Delta_T) + current * tau; // Exponential Integrate-and-Fire equation
+            next_state = state + Delta_T * exp((state - threshold) / Delta_T) + current * tau; // Exponential Integrate-and-Fire equation
             spike = 0;           // No spike
         end
     end
