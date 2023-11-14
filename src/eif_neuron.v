@@ -1,8 +1,6 @@
 `default_nettype none
 
-
 module eif_neuron ( 
-
     input wire [7:0] current,
     input wire       clk,
     input wire       rst_n,
@@ -35,7 +33,7 @@ module eif_neuron (
             // Adjust the threshold based on spiking history
             if (spike_history) begin
                 threshold <= threshold - 10; // You can adjust the update logic
-            else
+            end else begin
                 threshold <= threshold + 1;  // You can adjust the update logic
             end
         end
