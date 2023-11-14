@@ -2,45 +2,35 @@ module eif_neuron (
     input wire [7:0] current,
     input wire clk,
     input wire rst_n,
-    
-    output wire spike,
+    input wire adaptive_threshold,  // enable adaptive threshold (enable when = 1, disable when = 0)
     output reg [7:0] state,
-    output reg [7:0] threshold_log 
+    output wire spike
 );
 
-    reg [7:0] threshold;
     wire [7:0] next_state;
-    reg spike_history;
+    reg [7:0] threshold;
 
-    // Additional signal to monitor threshold
-    integer log_index = 0;
+    parameter ADAPTIVE_INCREMENT = 295;  // adaptive increment factor
+    parameter ADAPTIVE_DECREMENT = 250;  // adaptive decrement factor
 
-    always @(posedge clk or negedge rst_n) begin
+    always @(posedge clk) begin
         if (!rst_n) begin
             state <= 0;
-            threshold <= 200;
-            spike_history <= 0;
-            log_index <= 0;
+            threshold <= 100;  // initial threshold 100
         end else begin
-            state <= next_state;
-            spike_history <= spike;
-            // Adjust the threshold based on spiking history
-            if (spike_history) begin
-                threshold <= threshold - 10; // You can adjust the update logic
+            if (spike) begin
+                state <= 0;
+                if (adaptive_threshold && (threshold < 220))  // avoiding overflow 255
+                    threshold <= threshold * ADAPTIVE_INCREMENT >> 8;  // increase threshold
             end else begin
-                threshold <= threshold + 1;  // You can adjust the update logic
+                state <= next_state;
+                if (adaptive_threshold && (threshold > 32))  // avoiding being too low
+                    threshold <= threshold * ADAPTIVE_DECREMENT >> 8;  // decrease threshold
             end
-
-            // Log the threshold value
-            threshold_log[log_index] <= threshold;
-            log_index <= log_index + 1;
         end
     end
 
-    // Spiking logic for IF
+    // next_state logic and spiking logic for IF
     assign spike = (state >= threshold);
-
-    // Update the membrane potential
     assign next_state = (spike ? 0 : (state + current)) - (spike ? threshold : 0);
-
 endmodule
