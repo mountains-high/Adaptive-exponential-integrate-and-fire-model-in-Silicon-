@@ -29,6 +29,7 @@
 `default_nettype none
 
 module eif_neuron ( 
+    
     input wire [7:0] current,
     input wire       clk,
     input wire       rst_n,
@@ -37,9 +38,11 @@ module eif_neuron (
 );
     reg  [7:0] threshold;
     wire [7:0] next_state;
-    
 
-always @(posedge clk) begin
+    parameter Delta_T = 1.0;    // Sharpness parameter
+    parameter tau = 1.0;        // Membrane time constant
+
+    always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state <= 0;
             threshold <= 200;
@@ -48,10 +51,16 @@ always @(posedge clk) begin
         end
     end
 
-    // EIF model: Exponential decay and spiking logic
-    assign spike = (state >= threshold);
-    assign next_state = (spike ? 0 : (state + current)*0.9) - (spike ? threshold : 0); 
-    
-
+    // Exponential Integrate-and-Fire model differential equation
+    always @* begin
+        if (state >= threshold) begin
+            next_state = 0; // Reset the membrane potential
+            spike = 1;      // Generate spike
+        end else begin
+            next_state = state - (state - u_rest) + Delta_T * exp((state - theta_rh) / Delta_T) + current * tau; // Equation (5.6)
+            spike = 0;      // No spike
+        end
+    end
 
 endmodule
+
