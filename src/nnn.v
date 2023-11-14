@@ -11,6 +11,10 @@ module eif_neuron (
     wire [7:0] next_state;
     reg        spike_history;
 
+    // Additional signal to monitor threshold
+    reg [7:0] threshold_log [0:1000]; // Assuming simulation runs for 1000 cycles
+    integer log_index = 0;
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state <= 0;
