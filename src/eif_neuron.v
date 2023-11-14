@@ -2,8 +2,10 @@ module eif_neuron (
     input wire [7:0] current,
     input wire clk,
     input wire rst_n,
+    
     output wire spike,
-    output reg [7:0] state
+    output reg [7:0] state,
+    output reg [7:0] threshold_log 
 );
 
     reg [7:0] threshold;
@@ -11,7 +13,6 @@ module eif_neuron (
     reg spike_history;
 
     // Additional signal to monitor threshold
-    reg [7:0] threshold_log [0:1000]; // Assuming simulation runs for 1000 cycles
     integer log_index = 0;
 
     always @(posedge clk or negedge rst_n) begin
