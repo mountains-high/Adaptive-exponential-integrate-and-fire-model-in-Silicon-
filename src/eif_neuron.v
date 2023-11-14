@@ -29,7 +29,6 @@
 `default_nettype none
 
 module eif_neuron ( 
-    
     input wire [7:0] current,
     input wire       clk,
     input wire       rst_n,
@@ -37,7 +36,7 @@ module eif_neuron (
     output reg [7:0] state
 );
     reg  [7:0] threshold;
-    wire [7:0] next_state;
+    reg  [7:0] next_state; // Change from wire to reg
 
     parameter Delta_T = 1.0;    // Sharpness parameter
     parameter tau = 1.0;        // Membrane time constant
@@ -63,4 +62,5 @@ module eif_neuron (
     end
 
 endmodule
+
 
