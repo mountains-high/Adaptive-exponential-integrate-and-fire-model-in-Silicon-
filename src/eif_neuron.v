@@ -1,4 +1,5 @@
 `default_nettype none
+`include "math.v"
 
 module eif_neuron ( 
     input wire [7:0] current,
